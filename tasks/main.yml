@@ -6,6 +6,8 @@
       - docker_network_name is defined
       - cloudwatch_region is defined
       - cloudwatch_log_group is defined
+      - bazarr_movies_folder is defined
+      - bazarr_tv_folder is defined
 
 - name: Create the dockernetwork
   docker_network:
@@ -46,9 +48,10 @@
     ports:
       - 6767:6767
     volumes:
-      - "{{ hostvars[inventory_hostname].working_directory }}{{ application_name }}/movies:/movies"
       - "{{ hostvars[inventory_hostname].working_directory }}{{ application_name }}/config:/config"
       - "{{ hostvars[inventory_hostname].working_directory }}{{ application_name }}/tv:/tv"
+      - "{{ bazarr_movies_folder }}:/movies"
+      - "{{ bazarr_tv_folder }}:/tv"
     env:
       PUID: "1000"
       PGID: "1000"
