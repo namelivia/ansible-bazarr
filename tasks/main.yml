@@ -49,7 +49,6 @@
       - 6767:6767
     volumes:
       - "{{ hostvars[inventory_hostname].working_directory }}{{ application_name }}/config:/config"
-      - "{{ hostvars[inventory_hostname].working_directory }}{{ application_name }}/tv:/tv"
       - "{{ bazarr_movies_folder }}:/movies"
       - "{{ bazarr_tv_folder }}:/tv"
     env:
