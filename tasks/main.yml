@@ -8,6 +8,7 @@
       - cloudwatch_log_group is defined
       - bazarr_movies_folder is defined
       - bazarr_tv_folder is defined
+      - backup_day is defined
 
 - name: Create the dockernetwork
   docker_network:
@@ -55,3 +56,13 @@
       PUID: "1000"
       PGID: "1000"
       TZ: "Europe/Madrid"
+
+- name: Setup file backups
+  include_role:
+    name: ansible-backups
+    tasks_from: setup-file-backups
+
+- name: Setup S3 backups
+  include_role:
+    name: ansible-backups
+    tasks_from: setup-s3-backups
