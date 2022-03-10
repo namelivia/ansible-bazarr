@@ -14,21 +14,9 @@
   docker_network:
     name: "{{ docker_network_name }}"
 
-- name: Create the movies directory
-  file:
-    path: "{{ hostvars[inventory_hostname].working_directory }}{{ application_name }}/movies"
-    state: directory
-    mode: 0755
-
 - name: Create the config directory
   file:
     path: "{{ hostvars[inventory_hostname].working_directory }}{{ application_name }}/config"
-    state: directory
-    mode: 0755
-
-- name: Create the tv directory
-  file:
-    path: "{{ hostvars[inventory_hostname].working_directory }}{{ application_name }}/tv"
     state: directory
     mode: 0755
 
@@ -37,7 +25,6 @@
     name: "{{ application_name }}-app"
     image: "linuxserver/bazarr:arm32v7-1.0.3-development"
     restart_policy: "always"
-    cleanup: true
     pull: true
     log_driver: "awslogs"
     log_options:
