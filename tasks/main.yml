@@ -23,7 +23,7 @@
 - name: Create app container
   docker_container:
     name: "{{ application_name }}-app"
-    image: "linuxserver/bazarr:arm32v7-1.0.3-development"
+    image: "linuxserver/bazarr:arm32v7-1.1.0"
     restart_policy: "always"
     pull: true
     log_driver: "awslogs"
