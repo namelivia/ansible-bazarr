@@ -13,8 +13,7 @@ roles:
 ```
 
 ## Required variables
- - `cloudwatch_region` Cloudwatch region to send the logs to.
- - `cloudwatch_log_group` Cloudwatch log group to send the logs to.
+ - `loki_url` Loki endpoint to send logs.
  - `sonarr_movies_folder` Movies folder.
  - `sonarr_tv_folder` Series folder.
  - `backup_day` Day of the week in which the config will be backed up.

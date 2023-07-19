@@ -4,8 +4,7 @@
     that:
       - application_name is defined
       - docker_network_name is defined
-      - cloudwatch_region is defined
-      - cloudwatch_log_group is defined
+      - loki_url is defined
       - bazarr_movies_folder is defined
       - bazarr_tv_folder is defined
       - backup_day is defined
@@ -26,11 +25,10 @@
     image: "linuxserver/bazarr:arm32v7-latest"
     restart_policy: "always"
     pull: true
-    log_driver: "awslogs"
+    log_driver: "loki"
     log_options:
-      awslogs-region: "{{ cloudwatch_region }}"
-      awslogs-group: "{{ cloudwatch_log_group }}"
-      awslogs-stream: "{{ application_name }}-app"
+      loki-url: "{{ loki_url }}"
+      loki-batch-size: "400"
     networks:
       - name: "{{ docker_network_name }}"
     ports:
