@@ -22,7 +22,7 @@
 - name: Create app container
   docker_container:
     name: "{{ application_name }}-app"
-    image: "linuxserver/bazarr:arm32v7-1.2.2"
+    image: "linuxserver/bazarr:1.2.2"
     restart_policy: "always"
     pull: true
     log_driver: "loki"
