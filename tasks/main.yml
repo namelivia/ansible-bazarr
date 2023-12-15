@@ -17,12 +17,12 @@
   file:
     path: "{{ hostvars[inventory_hostname].working_directory }}{{ application_name }}/config"
     state: directory
-    mode: 0755
+    mode: "0755"
 
 - name: Create app container
   docker_container:
     name: "{{ application_name }}-app"
-    image: "linuxserver/bazarr:1.2.2"
+    image: "linuxserver/bazarr:1.4.0"
     restart_policy: "always"
     pull: true
     log_driver: "loki"
@@ -51,3 +51,10 @@
   include_role:
     name: ansible-backups
     tasks_from: setup-s3-backups
+
+- name: Setup restic backups
+  include_role:
+    name: ansible-backups
+    tasks_from: setup-restic-backups
+  vars:
+    file_path: "{{ hostvars[inventory_hostname].working_directory }}{{ application_name }}/config"
